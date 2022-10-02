@@ -80,9 +80,15 @@ public class Silly implements Comparable<Silly>{
      *       Make sure you document this method!
      */
 
-
-
-
+    /**
+     * Creates a new Silly object.
+     * This constructor takes in two Strings as an argument.
+     * @param name1 first part of this Silly instance's name.
+     * @param name2 second part of this Silly instance's name.
+     */
+    public Silly(String name1, String name2) {
+        this.name = name1.concat(name2);
+    }
 
     public static void main(String[] args) {
         /**
@@ -116,7 +122,7 @@ public class Silly implements Comparable<Silly>{
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {1, 1, 2, 3};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -134,6 +140,7 @@ public class Silly implements Comparable<Silly>{
     @Override
     public String toString(){
         // TODO (Task 3): Implement the body of this method!
+        return this.name;
     }
 
     /**
@@ -156,9 +163,8 @@ public class Silly implements Comparable<Silly>{
         if (!(o instanceof Silly)){
             return false;
         }
-
         Silly other = (Silly) o; // To access .name of o, we need to cast it.
-
+        return this.name.equals(other.name);
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
     }
@@ -194,7 +200,15 @@ public class Silly implements Comparable<Silly>{
          *                You can get the length of a string by using the
          *                .length() method.
          */
+        if (this.name.length() > other.name.length()) {
+            return 1;
+        } else if (other.name.length() > this.name.length()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
+
 
     /*
      * TODO (Task 6): Submit the changes you made on GitHub!
